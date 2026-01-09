@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/moon.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+	<link rel="stylesheet" href="plugin/chalkboard/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style> /* PDF Export Optimization */ @media print { .reveal { width: 100%; height: 100%; overflow: visible; } .reveal .slide { page-break-after: always; page-break-inside: avoid; margin: 0; padding: 60px 40px; } } /* General Slide Styling */ .reveal { font-size: 28px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; } /* Heading Sizes - Reduced for PDF */ .reveal h1 { font-size: 2.2em; margin-bottom: 20px; line-height: 1.2; text-transform: none; } .reveal h2 { font-size: 1.8em; margin-bottom: 15px; line-height: 1.2; } .reveal h3 { font-size: 1.4em; margin-bottom: 10px; } /* Body Text */ .reveal p { margin: 8 px 0; font-size: 1em; line-height: 1.4; } /* Lists */ .reveal ul, .reveal ol { margin: 10px 0; font-size: 1em; line-height: 1.5; text-align: left; } .reveal li { margin: 8px 0; } /* Tables */ .reveal table { font-size: 0.9em; margin: 20px auto; } .reveal table th, .reveal table td { padding: 8px 12px; } </style>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# TECH 4001: Teaching Technological Education in the IS
+## A Lesson should… Principles of Instruction.
+- **Instructor:** Andrew McConnell.
+- **Context:** Focusing on the philosophy and conceptual framework underlying Tech Ed teaching and learning for grades 9-12.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Course Foundations & Outcomes
+
+- **Objective:** To understand the theoretical frameworks that inform teaching, learning, and assessment in Technological Education.
+- **Key Outcomes:**
+    - Develop planning and instructional processes for **active learning environments**.
+    - Critically analyze curriculum policy and materials.
+    - Maintain a **positive, inclusive, and engaging** learning environment.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="callout callout-color-default">
+<div class="callout-title">
+<div class="callout-icon">
+
+<i class="fas fa-pencil-alt" ></i>
+
+
+</div>
+<div class="callout-title-inner">
+
+Analogy for understanding: 
+
+</div>
+</div>
+<div class="callout-content">
+
+Think of a lesson plan like a **professional kitchen service**. The "Minds On" is the *mise en place* (preparation and activation of tools), the "Action" is the high-heat cooking (demonstration and application of skills), and the "Consolidation" is the plating and presentation (integration and going public with the final product). Without the prep or the presentation, the meal—no matter how well-cooked—is incomplete.
+
+
+
+</div>
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Minds On — What Makes a Lesson Work?
+
+- **Defining the "Ideal" Lesson:** A successful lesson must go beyond simple delivery. It should:
+    - Have **clearly defined goals** for both the teacher and students.
+    - Engage students in **thinking and doing**.
+    - Provide opportunities for **risk-taking and feedback** (identifying what's right and what needs work).
+    - Ascend **Bloom's Taxonomy** (moving from "copy" to "create").
+    - Value **student inquiry** and create an environment conducive to learning.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# First Principles of Instruction (Merrill, 2002)
+
+- **The Goal:** Identifying prescriptive principles that are common across various instructional design theories.
+- **Prescriptive vs. Descriptive:** These principles relate to **creating learning environments** rather than just describing how learners acquire knowledge.
+- **The Five Principles:** Learning is promoted when it is **Problem-centered**, and involves **Activation, Demonstration, Application,** and **Integration**.
+*Merrill, M. D. (2002). First principles of instruction. *Educational Technology Research and Development*, *50*(3), 43–59.*
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Principle 1 — Problem-Centred Learning
+
+- **Real-World Application:** Learning is most effective when students solve **real-world problems** or whole tasks.
+- **Show Task:** Learners should be shown the task they will be able to perform by the end of the module.
+- **Problem Progression:** Skills improve when students solve a sequence of increasingly complex problems.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Principles 2 & 3 — Activation and Demonstration
+
+- **Activation:** New knowledge needs a foundation; we must activate **prior experience** or provide a organizing structure for new information.
+- **Demonstration (Show Me):** Instruction is more effective when it **demonstrates** the skill (portrayal) rather than just telling the information.
+- **Consistency:** Demonstrations must align with the learning goal (e.g., modeling for behavior, visualizations for processes).
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Principles 4 & 5 — Application and Integration
+
+- **Application (Let Me):** Learners must use their new knowledge to solve problems.
+- **Coaching:** Learning is enhanced by feedback and **scaffolding** that is gradually withdrawn as the student gains mastery.
+- **Integration:** Students must be encouraged to **transfer** skills into their everyday lives.
+- **Going Public:** Motivation increases when learners can publicly **demonstrate, reflect on, and defend** their new skills.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Action — Analyzing Professional Practice
+
+- **TVO Lesson Plan Review:** We will assess a Grade 12 Chemistry (College) lesson plan.
+- [Grade 12 Chemistry, College](https://tvolearn.com/collections/courses/products/sch4c-chemistry)
+- **Evaluation Criteria:**
+    - Does it engage students in "doing"?
+    - Is there a clear opportunity for feedback?
+    - Does it allow for student inquiry?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Action — Developing Your Framework
+
+- **Task:** Work with a partner to generalize the purpose of lesson segments (Minds On, Action, Consolidation).
+- **Application:** Develop a short framework for your own **Tech Curriculum lesson plan**.
+- **Tech Ed Requirements:** Ensure your plan considers **safety, differentiation**, and transitions from "copy" to "create".
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Consolidation & Next Steps
+
+- **Share Your Generalizations:** What did your group conclude about the parts of a lesson?
+- **Share Your Example:** Present your tech framework to the class.
+- **Next Reading:** Complete the "Getting Started with Student Inquiry" reading on **Perusall** (4 high-quality comments required).
+- **Upcoming Assignment:** Start planning your **Group Multi-Day Project/Inquiry Unit Plan** (due Class 6).
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/chalkboard/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+	      RevealPointer,
+		  RevealChalkboard, 
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+				{ icon: '<i class="fa fa-pen-square"></i>',
+				title: 'Toggle chalkboard (B)',
+				action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				title: 'Toggle notes canvas (C)',
+				action: 'RevealChalkboard.toggleNotesCanvas();'
+				},
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":false,"transition":"slide","transitionSpeed":"normal"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
