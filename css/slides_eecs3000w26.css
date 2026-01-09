@@ -1,0 +1,114 @@
+/* ===== Hard override: Reveal can centre with flex, not just text-align ===== */
+
+/* 1) Force the slide container to be left/top aligned even if the theme uses flex */
+.reveal .slides section {
+  /* Many themes/plugins set section to flex and centre children */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* top */
+  align-items: flex-start !important;     /* left */
+  text-align: left !important;
+}
+
+/* 2) Make common “wrapper” divs also left-aligned */
+.reveal .slides section > div,
+.reveal .slides section .r-stack,
+.reveal .slides section .r-stretch,
+.reveal .slides section .slide-content,
+.reveal .slides section .container {
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* 3) If the theme forces centring on “present” slides, override those too */
+.reveal .slides section.present,
+.reveal .slides section.past,
+.reveal .slides section.future {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+/* 4) Typography */
+.reveal,
+.reveal section {
+  font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1.45;
+  color: #1c0d57;
+  text-align: left !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5 {
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  line-height: 1.2;
+  margin: 0 0 0.6em 0;
+  width: 100%;
+  text-align: left !important;
+}
+
+.reveal h1 { font-size: 2.2em; }
+.reveal h2 { font-size: 1.8em; }
+.reveal h3 { font-size: 1.4em; }
+
+/* 5) Paragraphs and lists */
+.reveal p {
+  margin: 0 0 0.6em 0;
+  width: 100%;
+  text-align: left !important;
+}
+
+.reveal ul,
+.reveal ol {
+  margin: 0 0 0.6em 1.2em;
+  padding: 0;
+  width: calc(100% - 1.2em);
+  text-align: left !important;
+}
+
+.reveal li { margin-bottom: 0.3em; }
+
+/* 6) Blockquotes */
+.reveal blockquote {
+  font-style: italic;
+  border-left: 4px solid #ccc;
+  padding-left: 0.6em;
+  color: #333;
+  margin: 0.6em 0;
+  width: 100%;
+  text-align: left !important;
+}
+
+.small-text { font-size: 0.7em; }
+.footnote-text { font-size: 0.6em; opacity: 0.8; }
+
+/* 7) Code */
+.reveal code {
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+/* 8) Debug helper (remove once confirmed)
+   If you STILL see centring, something else is applying higher-specificity CSS.
+   This will make it obvious where the “content box” really is. */
+.reveal .slides section {
+  /*outline: 2px solid rgba(255,0,0,0.35) !important;*/
+  outline: none !important;
+}
+
+/* =========================
+   Print-only slide border
+   ========================= */
+
+@media print {
+  .reveal .slides section {
+    border: 2px solid #c00000;   /* adjust colour/thickness */
+    box-sizing: border-box;
+  }
+}
